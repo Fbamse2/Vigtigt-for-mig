@@ -21,6 +21,33 @@
         .image-grid img {
             width: 90%;
             height: auto;
+            cursor: pointer; /* Adding pointer cursor for images */
+        }
+
+        /* Styling for the enlarged image display */
+        .enlarged-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .enlarged-image img {
+            max-width: 80%;
+            max-height: 80%;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -32,16 +59,16 @@
         <h3>Det er min morfars sommerhus som min familie overnatter i når vi er i Skælskør</h3><hr>
         <div class="image-grid">
             <div>
-                <img src="Skælskør Sommerhus/Skælskør SommerHus 1.jpg">
+                <img src="Skælskør Sommerhus/Skælskør SommerHus 1.jpg" onclick="showImage(this.src)">
             </div>
             <div>
-                <img src="Skælskør Sommerhus/Skælskør SommerHus 2.jpg">
+                <img src="Skælskør Sommerhus/Skælskør SommerHus 2.jpg" onclick="showImage(this.src)">
             </div>
             <div>
-                <img src="Skælskør Sommerhus/Skælskør SommerHus 3.jpg">
+                <img src="Skælskør Sommerhus/Skælskør SommerHus 3.jpg" onclick="showImage(this.src)">
             </div>
             <div>
-                <img src="Skælskør Sommerhus/Skælskør SommerHus 4.jpg">
+                <img src="Skælskør Sommerhus/Skælskør SommerHus 4.jpg" onclick="showImage(this.src)">
             </div>
         </div>
     </div>
@@ -52,20 +79,16 @@
         <h3>Et par billeder af Skælskør strand</h3><hr>
         <div class="image-grid">
             <div>
-                den gammle Skælskør bro
-                <img src="Skælskør Strand/80B1FD05-F9B1-4527-8201-A8288EB2878A.JPG">
+                <img src="Skælskør Strand/80B1FD05-F9B1-4527-8201-A8288EB2878A.JPG" onclick="showImage(this.src)">
             </div>
             <div>
-                den gammle Skælskør bro
-                <img src="Skælskør Strand/F5B3FB46-9EBC-4E11-8B96-34830C19F57D.JPG">
+                <img src="Skælskør Strand/F5B3FB46-9EBC-4E11-8B96-34830C19F57D.JPG" onclick="showImage(this.src)">
             </div>
             <div>
-                den nye Skælskør bro
-                <img src="Skælskør Strand/IMG_4774.jpg">
+                <img src="Skælskør Strand/IMG_4774.jpg" onclick="showImage(this.src)">
             </div>
             <div>
-                den nye Skælskør bro
-                <img src="Skælskør Strand/IMG_4775.jpg">
+                <img src="Skælskør Strand/IMG_4775.jpg" onclick="showImage(this.src)">
             </div>
         </div>
     </div>
@@ -73,8 +96,27 @@
     <hr>
 
     <div class="image-grid">
-        <img src="Vigtigt for mig.png">
+        <img src="Vigtigt for mig.png" onclick="showImage(this.src)">
     </div>
 
+    <!-- Enlarged image display -->
+    <div class="enlarged-image" onclick="hideImage(this)">
+        <span class="close-button" onclick="hideImage(this)">X</span>
+        <img id="enlargedImg">
+    </div>
+
+    <script>
+        function showImage(src) {
+            const enlargedImg = document.getElementById('enlargedImg');
+            enlargedImg.src = src;
+            const enlargedView = document.querySelector('.enlarged-image');
+            enlargedView.style.display = 'flex';
+        }
+
+        function hideImage(element) {
+            const enlargedView = document.querySelector('.enlarged-image');
+            enlargedView.style.display = 'none';
+        }
+    </script>
 </body>
 </html>
